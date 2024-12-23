@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+a.imageBlock{
+  /* padding: 5px 5px; */
+}
+
+
+
+  .divider{
+    width:1px;
+    vertical-align: middle;
+    padding-left: 3px;
+    height: 32px;
+    margin-right: 1px;
+    border-right: 3px solid rgba(255,255,255,.15);
+  }
+
+  
+  

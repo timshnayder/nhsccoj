@@ -5,12 +5,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiOutlineFullscreen, AiOutlineSetting } from 'react-icons/ai';
 
 type EditorNavProps = {
+    userLang: string;
     setUserLang: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const EditorNav:React.FC<EditorNavProps> = ({setUserLang}) => {
+const EditorNav:React.FC<EditorNavProps> = ({setUserLang, userLang}) => {
     const [user] = useAuthState(auth);
-    const [selectedLang,setMenuUserLang] = useState("cpp");
+
 
     useEffect(() => {
         const fetchUserLanguage = async () => {
@@ -21,7 +22,7 @@ const EditorNav:React.FC<EditorNavProps> = ({setUserLang}) => {
               if (userSnap.exists()) {
                 const { language } = userSnap.data();
                 setUserLang(language || "cpp");
-                setMenuUserLang(language || "cpp");
+
               }
             } catch (err) {
               console.error("Error fetching user language:", err);
@@ -35,7 +36,7 @@ const EditorNav:React.FC<EditorNavProps> = ({setUserLang}) => {
     const handleLanguageChange = async (e: React.ChangeEvent<HTMLSelectElement>)=>{
         const newLang = e.target.value;
         setUserLang(newLang);
-        setMenuUserLang(newLang);
+
 
         if(user){
             try{
@@ -54,11 +55,11 @@ const EditorNav:React.FC<EditorNavProps> = ({setUserLang}) => {
     return <div className='flex items-center justify-between bg-dark-layer-2 h-11 w-full overflow-y-hidden'>
         <div className='flex items-center text-white dropdown'>
             <select 
-            name={selectedLang}
+            name={userLang}
             id="language" 
             className='flex cursor-pointer items-center rounded text-left focus:outline-none bg-dark-fill-3 text-dark-label-2
             hover:bg-dark-fill-2 px-2 py-1.5 font-medium'
-            value={selectedLang}
+            value={userLang}
             onChange={handleLanguageChange}
             >             
                 <option className="text-white bg-dark-layer-1" value="cpp">C++</option>

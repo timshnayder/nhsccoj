@@ -77,14 +77,15 @@ public class Main {
         }
         try{
             // Post request to compile endpoint
-            
-            const res = await Axios.post(`http://localhost:8000/compile`, {
+            console.log("sent post request")
+            const res = await Axios.post(`https://nhsccojserver.vercel.app/compile`, {
                 code: userCode,
                 language: userLang,
                 pid: pid,
                 inputs: problem.inputs,
                 outputs: problem.outputs,
             })
+            console.log(console.log(res))
             if(res){
                 setTestResults(res.data.results);
                 setVerdict(res.data.verdict);

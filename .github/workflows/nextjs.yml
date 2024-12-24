@@ -80,7 +80,7 @@ jobs:
         with:
           path: ./out
       - name: run frontend
-        run: npm run dev
+        run: npm start
 
   # Deployment job
   deploy:

@@ -48,7 +48,7 @@ public class Main {
     const [testResults, setTestResults] = useState<any[]>([]);
     const [verdict, setVerdict] = useState("");
     const [userTheme, setUserTheme] = useState("vs-dark");
-    const [fontSize, setFontSize] = useState("16");
+    const [fontSize, setFontSize] = useState(16);
     let boilerPlate;
 
     const options = {

@@ -80,7 +80,6 @@ public class Main {
             const res = await Axios.post(`https://nhsccojserver.vercel.app/compile`, {
                 code: userCode,
                 language: userLang,
-                pid: pid,
                 inputs: problem.inputs,
                 outputs: problem.outputs,
             })

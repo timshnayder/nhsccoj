@@ -12,7 +12,6 @@ type ProblemPageProps = {
 };
 
 const ProblemPage: React.FC<ProblemPageProps> = ({ problem }) => {
-    console.log(problem);
     if(!problem){
         return <div>Problem not found</div>
     }

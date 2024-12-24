@@ -98,16 +98,11 @@ function getUserAdmin(){
 	const [user] = useAuthState(auth);
 	useEffect(()=>{
 		const getIfUserAdmin = async() =>{
-			console.log("in func")
 			const userRef = doc(firestore,"users",user!.uid);
 			const userSnap = await getDoc(userRef);
-			console.log(userSnap);
 			if(userSnap.exists()){
-				console.log("in if")
 				const data = userSnap.data();
-				console.log(data)
 				const {isAdmin} = data;
-				console.log(isAdmin)
 				setData(isAdmin || false);
 			}
 		}

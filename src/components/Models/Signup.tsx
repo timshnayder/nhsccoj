@@ -25,7 +25,6 @@ createUserWithEmailAndPassword,
     
     const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-        console.log(inputs);
 	};
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

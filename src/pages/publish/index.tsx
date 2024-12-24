@@ -76,9 +76,7 @@ const index:React.FC<indexProps> = () => {
                 ...prevInputs,
                 statement: value,
               }));
-            console.log(inputs);
         }      
-        console.log(inputs.statement);
     }
 
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

@@ -69,7 +69,6 @@ public class Main {
             });
             return;
         }
-        console.log(userCode);
         if(userCode === ""){
             setVerdict("CE");
             setTestResults([{output: {output:"You must input some code to submit"}}])
@@ -86,12 +85,9 @@ public class Main {
                 inputs: problem.inputs,
                 outputs: problem.outputs,
             })
-            console.log(res)
             if(res){
-                console.log("res exists")
                 setTestResults(res.data.results);
                 setVerdict(res.data.verdict);
-                console.log(res.data.results);
                 if(res.data.verdict === "AC"){
                     console.log("passed");
                     const userRef = doc(firestore, "users", user.uid);
@@ -107,6 +103,8 @@ public class Main {
                 }
             }
         }catch(err){
+            setVerdict("CE");
+
             console.error(err);
         }finally{
             setLoading(false);
@@ -216,6 +214,7 @@ public class Main {
                                 )}
                                 {(!loading && verdict ==="CE") && (
                                     <div className='whitespace-pre'>
+
                                         {testResults[0]?.output?.output}
                                     </div>
                                 )}

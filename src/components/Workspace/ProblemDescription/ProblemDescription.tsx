@@ -20,7 +20,6 @@ const ProblemDescription:React.FC<ProblemDescriptionProps> = ({problem,_solved})
     const {currentProblem,loading,problemDifficultyClass, setCurrentProblem} = useGetCurrentProblem(problem.id);
 	const {liked, disliked, starred, solved, setData} = useGetUserDataOnProblem(problem.id);
 	const [updating, setUpdating] = useState(false);
-	console.log(problem);
 	const handleLike = async()=>{
 		if(!user){
 			toast.error("You must be logged in to like a problem", {position:"top-left", theme:"dark"})

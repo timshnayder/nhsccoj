@@ -8,13 +8,13 @@ import Split from 'react-split';
 import { useAuthState } from "react-firebase-hooks/auth";
 import Navbar from "@/components/Navbar/Navbar";
 
-type indexProps = {
+type PublishPageProps = {
     
 };
 
-const index:React.FC<indexProps> = () => {
+const PublishPage:React.FC<PublishPageProps> = () => {
 	const [user] = useAuthState(auth);
-	const access = getUserAccess();
+	const access = useGetUserAccess();
 	const [loading, setLoading] = useState(true);
 	
 
@@ -274,9 +274,9 @@ const index:React.FC<indexProps> = () => {
 
 	
 }
-export default index;
+export default PublishPage;
 
-function getUserAccess(){
+function useGetUserAccess(){
 	const [data,setData] = useState(false);
 	const [user] = useAuthState(auth);
 	useEffect(()=>{

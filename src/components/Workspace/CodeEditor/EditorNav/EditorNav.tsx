@@ -86,21 +86,21 @@ const EditorNav:React.FC<EditorNavProps> = ({setUserLang, userLang}) => {
 }
 export default EditorNav;
 
-function getCurLanguage(){
-    const [data, setData] = useState("cpp");
-    const [user] = useAuthState(auth);
-    useEffect(()=>{
-        const getUserCurrentLang = async() =>{
-            const userRef = doc(firestore,"users",user!.uid);
-            const userSnap = await getDoc(userRef);
-            if(userSnap.exists()){
-                const data = userSnap.data();
-                const {language} = data;
-                setData(language);
-            }
-        }
-        if(user) getUserCurrentLang();
-        return () => setData("cpp");
-    },[user])
-    return data;
-}
+// function useGetCurLanguage(){
+//     const [data, setData] = useState("cpp");
+//     const [user] = useAuthState(auth);
+//     useEffect(()=>{
+//         const getUserCurrentLang = async() =>{
+//             const userRef = doc(firestore,"users",user!.uid);
+//             const userSnap = await getDoc(userRef);
+//             if(userSnap.exists()){
+//                 const data = userSnap.data();
+//                 const {language} = data;
+//                 setData(language);
+//             }
+//         }
+//         if(user) getUserCurrentLang();
+//         return () => setData("cpp");
+//     },[user])
+//     return data;
+// }

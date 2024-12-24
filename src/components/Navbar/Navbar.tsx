@@ -74,11 +74,11 @@ const Navbar:React.FC<NavbarProps> = ({problemPage}) => {
                 <div className="flex items-center space-x-4 flex-1 justify-end">
                     {!user && (
                         <div className='inline-block items-center float-right align-middle'>
-                        <a href="/auth">
-                    <button className='mr-5 my-2 bg-dark-layer-1 text-white py-1 px-4 rounded-md text-sm font-medium
-                    hover:text-black hover:bg-white hover-border-2 hover:border-gray border-4 border-white transition duration-300 ease-in-out' >Sign In</button>
-                    </a>
-                    </div>
+                            <Link href="/auth">
+                                <button className='mr-5 my-2 bg-dark-layer-1 text-white py-1 px-4 rounded-md text-sm font-medium
+                                hover:text-black hover:bg-white hover-border-2 hover:border-gray border-4 border-white transition duration-300 ease-in-out' >Sign In</button>
+                            </Link>
+                        </div>
                     )}
                     
                     {user && (

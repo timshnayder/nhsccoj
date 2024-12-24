@@ -5,11 +5,11 @@ import LinksParticlesComponent from '@/components/Particles/links';
 import useHasMounted from '@/hooks/useHasMounted';
 import { FaCheck } from 'react-icons/fa';
 
-type pageProps = {
+type ProblemsPageProps = {
     
 };
 
-const page:React.FC<pageProps> = () => {
+const ProblemsPage:React.FC<ProblemsPageProps> = () => {
     const [loadingProblems, setLoadingProblems] = useState(true);
 	const hasMounted=useHasMounted(); if(!hasMounted){return null};
     return (
@@ -58,7 +58,7 @@ const page:React.FC<pageProps> = () => {
         
     )
 }
-export default page;
+export default ProblemsPage;
 
 const LoadingSkeleton = () => {
 	return(

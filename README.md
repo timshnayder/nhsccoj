@@ -1,38 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Newmarket Highschool Coding Club Online Judge
 
-## Getting Started
+## Overview
+The **Newmarket Highschool Coding Club Online Judge** (NHCCOJ) is a platform designed to foster programming skills within the Newmarket Highschool Coding Club. It allows members to:
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- **Problem Library**: A curated list of problems ranging from beginner to advanced levels.
+- **Automated Judging**: Instant feedback with test case validation.
+- **User Accounts**: Track progress and view solution history.
+- **Custom Problem Submission**: Club executives can create and upload problems.
+- **Multi-language Support**: Solutions can be written in popular languages like C++, Python, and Java.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Installation and Setup
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/<your-repo>/NHCCOJ.git
+   ```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2. Navigate to the project directory:
+   ```bash
+   cd NHCCOJ
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+6. Access the platform locally at:
+   [http://localhost:8000](http://localhost:8000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contribution Guidelines
 
-## Deploy on Vercel
+We welcome contributions from all club members! Here are some ways you can help:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Submit Problems**: Share interesting and challenging problems.
+- **Improve UI**: Enhance the user interface for better usability.
+- **Optimize Backend**: Improve the speed and reliability of the judging system.
+- **Fix Bugs**: Identify and resolve issues in the platform.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Commit your changes and push them to your fork.
+4. Open a pull request with a detailed description of your changes.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---

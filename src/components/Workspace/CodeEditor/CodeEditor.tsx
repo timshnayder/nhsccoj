@@ -59,7 +59,8 @@ public class Main {
     
     const {query: {pid}} = useRouter();
     const handleSubmit = async () => {
-
+        setVerdict("CE");
+        setTestResults([{output: {output:"ERROR"}}])
         setLoading(true);
         if(!user){
             toast.error("Please login to submit your code", {
@@ -144,12 +145,22 @@ public class Main {
         localStorage.setItem(`code-${pid}`, JSON.stringify(value))
     }
 
+    const handleReset = async () =>{
+        if(userLang === "cpp"){
+            setUserCode(boilerPlateCPP); 
+        }else if(userLang === "java"){
+            setUserCode(boilerPlateJava);
+        }else if(userLang === "python"){
+            setUserCode(boilerPlatePython)
+        }
+    }
+
 
     return (
         // issue with email appearing under is because of something here i think?! 
         // changing z to negative 10 makes it so u can see it, but then you cant click anything
         <div className='flex flex-col bg-dark-layer-1 relative overflow-x-hidden'>
-            <EditorNav setUserLang={setUserLang} userLang={userLang}/>
+            <EditorNav setUserLang={setUserLang} userLang={userLang} handleReset={handleReset}/>
             <Split className='h-[calc(100vh-94px)]' direction='vertical' sizes={[60,40]} minSize={60}>
                 <div className="w-full overflow-y-hidden">
                     <Editor

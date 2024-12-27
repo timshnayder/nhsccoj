@@ -64,6 +64,7 @@ function useGetProblems(setLoadingProblems: React.Dispatch<React.SetStateAction<
             const querySnapshot = await getDocs(q);
             const tmp: Problem[] = [];
             querySnapshot.forEach((problem)=>{
+                
                 tmp.push({id:problem.id,...problem.data()} as Problem)
             })
             setProblems(tmp);

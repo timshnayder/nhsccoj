@@ -7,9 +7,10 @@ import { AiOutlineFullscreen, AiOutlineSetting } from 'react-icons/ai';
 type EditorNavProps = {
     userLang: string;
     setUserLang: React.Dispatch<React.SetStateAction<string>>;
+    handleReset: ()=> void;
 };
 
-const EditorNav:React.FC<EditorNavProps> = ({setUserLang, userLang}) => {
+const EditorNav:React.FC<EditorNavProps> = ({setUserLang, userLang, handleReset}) => {
     const [user] = useAuthState(auth);
 
 
@@ -52,6 +53,7 @@ const EditorNav:React.FC<EditorNavProps> = ({setUserLang, userLang}) => {
         
     }
 
+
     return <div className='flex items-center justify-between bg-dark-layer-2 h-11 w-full overflow-y-hidden'>
         <div className='flex items-center text-white dropdown'>
             <select 
@@ -67,6 +69,10 @@ const EditorNav:React.FC<EditorNavProps> = ({setUserLang, userLang}) => {
                 <option className=" bg-dark-layer-1" value="java">Java</option>
 
             </select>
+            <button className='ml-4 flex cursor-pointer items-center rounded text-left focus:outline-none bg-dark-fill-3 text-dark-label-2
+            hover:bg-dark-fill-2 px-2 py-1.5 font-medium'
+            onClick={handleReset}
+            >Reset</button>
         </div>
         
         

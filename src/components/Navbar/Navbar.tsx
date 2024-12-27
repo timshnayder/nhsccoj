@@ -31,7 +31,7 @@ const Navbar:React.FC<NavbarProps> = ({problemPage}) => {
         router.push("/auth");
     }
     return (
-        <nav className="relative h-[50px] w-full shrink-0 items-center px-5 bg-[#1f1f1f] text-white text-lg font-sans font-semibold drop-shadow-lg z-200">
+        <nav className="relative w-full items-center px-5 bg-[#1f1f1f] text-white text-lg font-sans font-semibold drop-shadow-lg z-10">
             <div className={`flex w-full items-center justify-between`}>
                 <div className="justify-start flex align-middle items-center">
                     <Link href="/">
@@ -39,16 +39,14 @@ const Navbar:React.FC<NavbarProps> = ({problemPage}) => {
                     </Link>
                     
                     <span className="align-middle border-r-[3px] pr-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
-
-                    <Link href="/problems" className="text-center px-2 py-3 hover:bg-black inline-block align-middle">
+                    <Link href="/problems" className="text-center px-2 py-[12px] hover:bg-black inline-block align-middle">
                         <TfiAgenda className="inline-block mb-1"/> PROBLEMS
                     </Link>
-
                     <span className="align-middle border-r-[3px] pr-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
-                    <Link className="text-center px-2 py-3 hover:bg-black inline-block align-middle" href="/tips/"><FaRegLightbulb className="inline-block mb-1"/> TIPS</Link>
+                    <Link className="text-center px-2 py-[12px] hover:bg-black inline-block align-middle" href="/tips/"><FaRegLightbulb className="inline-block mb-1"/> TIPS</Link>
                     <span className="align-middle border-r-[3px] pr-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
                     {admin && <>
-                        <Link className="text-center px-2 py-3 hover:bg-black inline-block align-middle" href="/publish/"><BsPencil className="inline-block mb-1"/> PUBLISH</Link>
+                        <Link className="text-center px-2 py-[12px] hover:bg-black inline-block align-middle" href="/publish/"><BsPencil className="inline-block mb-1"/> PUBLISH</Link>
                         <span className="align-middle border-r-[3px] pr-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
                     </>}
                 </div>

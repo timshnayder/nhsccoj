@@ -309,7 +309,7 @@ public class Main {
                                             }
                             
                                             return (
-                                            <div className="mt-2">
+                                            <div key={index} className="mt-2">
                                                 Case# {index+1}:
                                                 <span className={`text-w ${caseClass}`}> {status}</span> <span> &#91;{result.time}s, {result.memory}kb&#93;</span> 
                                                 {status==="WA" && <p>Output: {result.stdout}</p>}

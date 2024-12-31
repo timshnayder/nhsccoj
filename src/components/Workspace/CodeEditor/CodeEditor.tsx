@@ -65,22 +65,45 @@ public class Main {
     const [user] = useAuthState(auth);
     
     const {query: {pid}} = useRouter();
-    const encodeb64 = (str:string) => {
-        return Buffer.from(str, "binary").toString("base64")
-    }
-    const decodeb64 = (str:any) => {
-        return Buffer.from(str, 'base64').toString()
+    
+    function base64ToUnicode(base64String: string): string {
+        // Decode Base64 into a byte array
+        const binaryString = atob(base64String);
+        const binaryLength = binaryString.length;
+        const bytes = new Uint8Array(binaryLength);
+      
+        for (let i = 0; i < binaryLength; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+      
+        // Decode the byte array into a Unicode string
+        const decoder = new TextDecoder('utf-8');
+        return decoder.decode(bytes);
     }
 
+    function unicodeToBase64(utf8String: string): string {
+        // Convert the UTF-8 string to a byte array
+        const encoder = new TextEncoder();
+        const byteArray = encoder.encode(utf8String);
+      
+        // Convert the byte array to a binary string
+        let binaryString = '';
+        byteArray.forEach((byte) => {
+          binaryString += String.fromCharCode(byte);
+        });
+      
+        // Encode the binary string as Base64
+        return btoa(binaryString);
+    }
+    
     const sendSubmission = async () =>{
-        
         const language_id = languageMap[userLang as keyof typeof languageMap]
         let options = {
             submissions:problem.inputs.map((input,index) =>({
                 language_id: language_id,
-                source_code: encodeb64(userCode),
-                stdin: encodeb64(input),
-                expected_output: encodeb64(problem.outputs[index]),
+                source_code: unicodeToBase64(userCode),
+                stdin: unicodeToBase64(input),
+                expected_output: unicodeToBase64(problem.outputs[index]),
             }))
         }
         // console.log("Options:")
@@ -95,6 +118,7 @@ public class Main {
         }
         url+="&base64_encoded=true&fields=*"
         const res = await axios.get(url);
+        setTestResults(res.data.submissions);
         if(res.data.submissions.some((submission:any) => submission.status.id <= 2)){
             return await getOutput(tokens);
         }
@@ -102,15 +126,16 @@ public class Main {
     }
 
     const handleSubmit = async () => {
-        setVerdict("CE");
-        setTestResults([{output: {output:"ERROR"}}])
         setLoading(true);
+        setTestResults([{output: {output:"ERROR"}}])
+        // setLoading(true);
         if(!user){
             toast.error("Please login to submit your code", {
                 position: "top-center",
                 autoClose: 3000,
                 theme: "dark",
             });
+            setLoading(false);
             return;
         }
         if(userCode === ""){
@@ -124,12 +149,14 @@ public class Main {
             const tokens = await sendSubmission();
             // console.log(tokens);
             if(tokens){
+                setLoading(false);
+                setVerdict("Processing");
                 const _res = await getOutput(tokens);
                 const results = _res.data.submissions;
                 console.log("Results: ")
                 console.log(results);
                 setTestResults(results);
-
+                
                 //full ac
                 if(results.every((submission:any)=>submission.status_id===3)){
                     setVerdict("AC");
@@ -144,18 +171,15 @@ public class Main {
 					}, 4000);
                 }
 
-                //at least 1 is CE
-                if(results.some((submission:any)=>submission.status_id===6)){
-                    setVerdict("CE");
-                }
-
+                //at least 1 WA so not pass
                 if(results.some((submission:any)=>(submission.status_id===4 || submission.status_id===5 || submission.status_id>=7))){
                     setVerdict("WA");
                 }
-                // results.map((submission:any,index:any) =>{
-                //     console.log(submission);
-                // })
-                
+
+                //at least 1 is CE (so all are CE)
+                if(results.some((submission:any)=>submission.status_id===6)){
+                    setVerdict("CE");
+                }                
             }
         }catch(err){
             setVerdict("CE");
@@ -252,10 +276,16 @@ public class Main {
                                     )    
                                 }  
 
-                                {(!loading && (verdict === "AC" || verdict === "WA"))  && (
+                                {(!loading && (verdict === "AC" || verdict === "WA" || verdict === "Processing"))  && (
                                         testResults.map((result,index) => {
                                             let status;
                                             switch(result.status_id){
+                                                case 1: 
+                                                    status = "In Queue";
+                                                    break;
+                                                case 2:
+                                                    status = "Processing";
+                                                    break;
                                                 case 3:
                                                     status = "AC";
                                                     break;
@@ -305,6 +335,8 @@ public class Main {
                                                 caseClass = "text-stone-300";
                                             }else if (status === "RTE"){
                                                 caseClass = "text-orange-800";
+                                            }else if(status === "In Queue" || status === "Processing"){
+                                                caseClass = "text-white";
                                             }else{
                                                 caseClass = "text-rose-950";
                                             }
@@ -313,9 +345,7 @@ public class Main {
                                             <div key={index} className="mt-2">
                                                 Case# {index+1}:
                                                 <span className={`text-w ${caseClass}`}> {status}</span> <span> &#91;{result.time}s, {result.memory}kb&#93;</span> 
-                                                {status==="WA" && <p>Output: {decodeb64(result.stdout)}</p>}
-                                                
-                                                
+                                                {status==="WA" && <p>Output: {base64ToUnicode(result.stdout)}</p>}
                                             </div>
                                             );
                                         })

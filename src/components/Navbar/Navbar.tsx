@@ -38,16 +38,16 @@ const Navbar:React.FC<NavbarProps> = ({problemPage}) => {
                         <Image src="/whitelogo.svg" alt='logo' height={53} width={140} className="mr-1"/>
                     </Link>
                     
-                    <span className="align-middle border-r-[3px] pr-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
+                    <span className="align-middle border-r-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
                     <Link href="/problems" className="text-center px-2 py-[12px] hover:bg-black inline-block align-middle">
                         <TfiAgenda className="inline-block mb-1"/> PROBLEMS
                     </Link>
-                    <span className="align-middle border-r-[3px] pr-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
+                    <span className="align-middle border-r-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
                     <Link className="text-center px-2 py-[12px] hover:bg-black inline-block align-middle" href="/tips/"><FaRegLightbulb className="inline-block mb-1"/> TIPS</Link>
-                    <span className="align-middle border-r-[3px] pr-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
+                    <span className="align-middle border-r-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
                     {admin && <>
                         <Link className="text-center px-2 py-[12px] hover:bg-black inline-block align-middle" href="/publish/"><BsPencil className="inline-block mb-1"/> PUBLISH</Link>
-                        <span className="align-middle border-r-[3px] pr-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
+                        <span className="align-middle border-r-[3px] w-[1px] h-[32px] mr-[1px] border-white opacity-15"></span>
                     </>}
                 </div>
                 {/* {problemPage && 

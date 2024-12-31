@@ -45,7 +45,6 @@ const EditorNav:React.FC<EditorNavProps> = ({setUserLang, userLang, handleReset}
                 await updateDoc(userDoc, {
                     language: newLang,
                 }) ;
-                console.log("Language updated")
             }catch(err){
                 console.error("Error updating languages");
             }

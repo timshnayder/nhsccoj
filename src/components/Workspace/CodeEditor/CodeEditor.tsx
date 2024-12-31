@@ -82,8 +82,8 @@ public class Main {
                 expected_output: problem.outputs[index],
             }))
         }
-        console.log("Options:")
-        console.log(options);
+        // console.log("Options:")
+        // console.log(options);
         return await Axios.post(`https://nhscc.dsoft.pro/submissions/batch?base64_encoded=false`, options)
     }
     const getOutput = async (tokens:any)=>{
@@ -121,12 +121,12 @@ public class Main {
         try{
             // Post request to compile endpoint  
             const tokens = await sendSubmission();
-            console.log(tokens);
+            // console.log(tokens);
             if(tokens){
                 const _res = await getOutput(tokens);
                 const results = _res.data.submissions;
-                console.log("Results: ")
-                console.log(results);
+                // console.log("Results: ")
+                // console.log(results);
                 setTestResults(results);
 
                 //full ac

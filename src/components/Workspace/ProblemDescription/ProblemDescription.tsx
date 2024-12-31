@@ -215,7 +215,7 @@ const ProblemDescription:React.FC<ProblemDescriptionProps> = ({problem,_solved})
 						)}
 
 						{/* Problem Statement(paragraphs) */}
-						<div className='text-white text-sm'>
+						<div className='text-white pb-4'>
 							<div dangerouslySetInnerHTML={{ __html: problem.statement}} />
 						</div>
 

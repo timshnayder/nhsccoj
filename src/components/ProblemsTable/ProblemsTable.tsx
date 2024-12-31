@@ -37,7 +37,7 @@ const ProblemsTable:React.FC<ProblemsTableProps> = ({setLoadingProblems}) => {
                             </Link>
                             }
                         </td>
-                        <td className={`text-nowrap px-6 py-1 ${difficultyColor} font-bold border-[#444] border-l-[1px] border-r-[1px] border-b-[1px] border-t-[1px]`}>
+                        <td className={`text-nowrap px-6 py-1 text-white font-bold border-[#444] border-l-[1px] border-r-[1px] border-b-[1px] border-t-[1px]`}>
                                 {problem.difficulty}
                         </td>
                         <td className={`px-6 py-1 w-[200px] border-[#444] border-l-[1px] border-r-[1px] border-b-[1px] border-t-[1px]`}>

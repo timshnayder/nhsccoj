@@ -73,18 +73,19 @@ public class Main {
     }
 
     const sendSubmission = async () =>{
+        
         const language_id = languageMap[userLang as keyof typeof languageMap]
         let options = {
             submissions:problem.inputs.map((input,index) =>({
                 language_id: language_id,
-                source_code: userCode,
-                stdin: input,
-                expected_output: problem.outputs[index],
+                source_code: encodeb64(userCode),
+                stdin: encodeb64(input),
+                expected_output: encodeb64(problem.outputs[index]),
             }))
         }
         // console.log("Options:")
         // console.log(options);
-        return await Axios.post(`https://nhscc.dsoft.pro/submissions/batch?base64_encoded=false`, options)
+        return await Axios.post(`https://nhscc.dsoft.pro/submissions/batch?base64_encoded=true`, options)
     }
     const getOutput = async (tokens:any)=>{
         let url = `https://nhscc.dsoft.pro/submissions/batch?tokens=`;
@@ -92,7 +93,7 @@ public class Main {
         for(let i = 1; i < numTestCases; i++){
             url += (","+tokens.data[i].token)
         }
-        url+="&fields=*"
+        url+="&base64_encoded=true&fields=*"
         const res = await axios.get(url);
         if(res.data.submissions.some((submission:any) => submission.status.id <= 2)){
             return await getOutput(tokens);
@@ -125,8 +126,8 @@ public class Main {
             if(tokens){
                 const _res = await getOutput(tokens);
                 const results = _res.data.submissions;
-                // console.log("Results: ")
-                // console.log(results);
+                console.log("Results: ")
+                console.log(results);
                 setTestResults(results);
 
                 //full ac
@@ -312,7 +313,7 @@ public class Main {
                                             <div key={index} className="mt-2">
                                                 Case# {index+1}:
                                                 <span className={`text-w ${caseClass}`}> {status}</span> <span> &#91;{result.time}s, {result.memory}kb&#93;</span> 
-                                                {status==="WA" && <p>Output: {result.stdout}</p>}
+                                                {status==="WA" && <p>Output: {decodeb64(result.stdout)}</p>}
                                                 
                                                 
                                             </div>
@@ -320,7 +321,8 @@ public class Main {
                                         })
                                 )}
                                 {(!loading && verdict ==="CE") && (
-                                    <div className='whitespace-pre'>
+                                    <div className='mt-2'>
+                                        Compilation Error:
                                         {testResults[0].stderr}
                                     </div>
                                 )}

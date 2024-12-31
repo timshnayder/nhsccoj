@@ -259,7 +259,7 @@ const PublishPage:React.FC<PublishPageProps> = () => {
 								
 		
 							{/* Problem Statement(paragraphs) */}
-							<div className="text-white">
+							<div className="text-white pb-4">
 								<div dangerouslySetInnerHTML={{ __html: inputs.statement}} />
 							</div>
 							

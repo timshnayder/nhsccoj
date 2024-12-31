@@ -147,7 +147,7 @@ const ProblemDescription:React.FC<ProblemDescriptionProps> = ({problem,_solved})
 
 
     return (
-		<div className='bg-dark-layer-1'>
+		<div className='bg-dark-layer-1 h-[calc(100vh-52px)]'>
 			{/* TAB */}
 			<div className='flex h-11 w-full items-center pt-2 bg-dark-layer-2 text-white overflow-x-hidden'>
 				<div className={"bg-dark-layer-1 rounded-t-[5px] px-5 py-[10px] text-xs "}>

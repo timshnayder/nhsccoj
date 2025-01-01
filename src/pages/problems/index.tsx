@@ -40,10 +40,13 @@ const ProblemsPage:React.FC<ProblemsPageProps> = () => {
 						<th scope='col' className='px-6 py-3 w-0 font-medium'>
 							Difficulty
 						</th>
-
+						<th scope='col' className='px-6 py-3 w-0 font-medium'>
+							Points
+						</th>
 						<th scope='col' className='px-6 py-3 w-0 font-medium'>
 							Category
 						</th>
+						
 						<th scope='col' className='px-6 py-3 w-0 font-medium'>
 							Solution
 						</th>

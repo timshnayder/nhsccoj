@@ -7,8 +7,6 @@ import Editor from "@monaco-editor/react";
 // import CodeMirror from '@uiw/react-codemirror'
 // import { tokyoNightStorm } from '@uiw/codemirror-theme-tokyo-night-storm';
 
-import { javascript } from '@codemirror/lang-javascript';
-import { cpp } from '@codemirror/lang-cpp';
 import EditorFooter from './EditorFooter';
 import { Problem } from '@/utils/types/problem';
 import { useAuthState } from 'react-firebase-hooks/auth';

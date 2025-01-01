@@ -145,7 +145,6 @@ const ProblemDescription:React.FC<ProblemDescriptionProps> = ({problem,_solved})
 		setUpdating(false); 
 	}
 
-
     return (
 		<div className='bg-dark-layer-1 h-[calc(100vh-52px)]'>
 			{/* TAB */}

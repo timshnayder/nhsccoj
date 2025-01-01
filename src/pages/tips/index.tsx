@@ -14,6 +14,8 @@ const page:React.FC<pageProps> = () => {
             <div className='mx-80 bg-[#b9b9b9] min-h-screen border-[#000000] border-x-4'>
                 <div className='p-10'>
                 <h1 className='text-4xl'>Tips</h1>
+                <p> Sample Text </p>
+                <p> BALADEHED </p>
                 </div>
             </div>
         </div>

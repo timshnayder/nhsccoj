@@ -1,5 +1,3 @@
-
-import { problems } from '@/mockProblems/problems';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { BsCheckCircle } from 'react-icons/bs'
@@ -20,7 +18,24 @@ const ProblemsTable:React.FC<ProblemsTableProps> = ({setLoadingProblems}) => {
     return (
         <tbody className='text-white'>
             {problems?.map((problem,idx) => {
-                const difficultyColor = problem.difficulty === "Easy" ? "text-green-500" : problem.difficulty === "Medium" ? "text-yellow-600"  : "text-red-700";
+                let difficultyColor;
+                switch(problem.difficulty){
+                    case "Easy":
+                    case "Bronze":
+                        difficultyColor = "text-[#B08D57]";
+                        break;
+                    case "Medium":
+                    case "Silver":
+                        difficultyColor = "text-slate-400";
+                        break;
+                    case "Hard":
+                    case "Gold":
+                        difficultyColor = "text-yellow-400";
+                        break;
+                    default:
+                        difficultyColor = "text-green-200";
+                        break;
+                }
                 return(
                     <tr className={`${idx % 2 == 1? "bg-dark-fill-3" : "bg-dark-fill-2"}`} key={problem.id}>
                         <th className="text-center align-middle px-3 font-medium whitespace-nowrap text-green border-[#444] border-l-[1px] border-r-[1px] border-b-[1px] border-t-[1px]">
@@ -37,8 +52,11 @@ const ProblemsTable:React.FC<ProblemsTableProps> = ({setLoadingProblems}) => {
                             </Link>
                             }
                         </td>
-                        <td className={`text-nowrap px-6 py-1 text-white font-bold border-[#444] border-l-[1px] border-r-[1px] border-b-[1px] border-t-[1px]`}>
+                        <td className={`text-nowrap px-6 py-1 ${difficultyColor} font-bold border-[#444] border-l-[1px] border-r-[1px] border-b-[1px] border-t-[1px]`}>
                                 {problem.difficulty}
+                        </td>
+                        <td className={`text-nowrap px-6 py-1 font-bold border-[#444] border-l-[1px] border-r-[1px] border-b-[1px] border-t-[1px]`}>
+                                {problem.points}
                         </td>
                         <td className={`px-6 py-1 w-[200px] border-[#444] border-l-[1px] border-r-[1px] border-b-[1px] border-t-[1px]`}>
                                 {problem.category}

@@ -1,29 +1,37 @@
-import Navbar from '@/components/Navbar/Navbar';
-import { GetStaticProps, GetStaticPaths } from 'next';
+/// Imports
+// Components 
+import Navbar from '@/components/Navbar/Navbar'; 
 import Workspace from '@/components/Workspace/Workspace';
-import React from 'react';
+
+// Modules
+import React from 'react'; // React
+import { GetStaticProps, GetStaticPaths } from 'next'; // Next Module
 import { Problem } from '@/utils/types/problem';
+
+// Database
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { firestore } from '@/firebase/firebase';
+
+
 // import { db } from '@/firebase/firebaseAdmin'; // Import Firestore Admin SDK setup
 
-type ProblemPageProps = {
-    problem: Problem;
+type ProblemPageProps = { // Creates type based on Util Params
+    problem: Problem; // based on Problem
 };
 
-const ProblemPage: React.FC<ProblemPageProps> = ({ problem }) => {
-    if(!problem){
-        return <div>Problem not found</div>
+const ProblemPage: React.FC<ProblemPageProps> = ({ problem }) => { // Func
+    if(!problem){ // If there is no problem:
+        return <div>Problem not found</div> // Change page to 404 page
     }
-    return (
-        <div className='overflow-y-hidden'>
-            <Navbar problemPage={true} />
-            <Workspace problem={problem} />
+    return ( // Return the problem page
+        <div className='overflow-y-hidden'> 
+            <Navbar problemPage={true} />  {/* add NavBar object */}
+            <Workspace problem={problem} /> {/* add Workspace object (adds code editor, problem, description, test cases) */}
         </div>
     );
 };
 
-export default ProblemPage;
+export default ProblemPage; // Allows Problem Page to be exported to other Pages
 
 // Fetch all problem IDs for getStaticPaths
 export const getStaticPaths: GetStaticPaths = async () => {

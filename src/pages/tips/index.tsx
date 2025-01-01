@@ -15,7 +15,7 @@ const page:React.FC<pageProps> = () => {
                 <div className='p-10'>
                 <h1 className='text-4xl'>Tips</h1>
                 <p> Sample Text </p>
-                <p> BALADEHED </p>
+                <p>c++ tips test</p>
                 </div>
             </div>
         </div>

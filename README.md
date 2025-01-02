@@ -17,12 +17,12 @@ The **Newmarket Highschool Coding Club Online Judge** (NHCCOJ) is a platform des
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-repo>/NHCCOJ.git
+   git@github.com:timshnayder/nhsccoj.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd NHCCOJ
+   cd nhsccoj
    ```
 
 3. Install dependencies:

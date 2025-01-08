@@ -233,7 +233,6 @@ public class Main {
         }
     }
 
-
     return (
         // issue with email appearing under is because of something here i think?! 
         // changing z to negative 10 makes it so u can see it, but then you cant click anything
@@ -349,9 +348,11 @@ public class Main {
                                         })
                                 )}
                                 {(!loading && verdict ==="CE") && (
-                                    <div className='mt-2'>
+                                    <div className='mt-2 whitespace-pre-wrap'>
                                         Compilation Error:
-                                        {testResults[0].stderr}
+                                        {
+                                            base64ToUnicode(testResults[0].compile_output)
+                                        }
                                     </div>
                                 )}
                             </div>

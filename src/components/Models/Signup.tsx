@@ -6,7 +6,7 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth, firestore } from "@/firebase/firebase";
 import { useRouter } from "next/router";
 import { toast } from 'react-toastify';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 type SignupProps = {};
 
 const Signup:React.FC<SignupProps> = () => {
@@ -33,6 +33,30 @@ createUserWithEmailAndPassword,
         }
         try{
             toast.loading("Creating your account", {position:"top-center", toastId:"loadingToast"})
+
+            // Check if email or displayName is already taken
+            const emailQuery = query(
+                collection(firestore, "users"),
+                where("email", "==", inputs.email)
+            );
+            const displayNameQuery = query(
+                collection(firestore, "users"),
+                where("displayName", "==", inputs.displayName)
+            );
+
+            const [emailSnapshot, displayNameSnapshot] = await Promise.all([
+                getDocs(emailQuery),
+                getDocs(displayNameQuery),
+            ]);
+
+            if (!emailSnapshot.empty) {
+                return toast.error("Email is already in use", {position: 'top-center', autoClose: 3000, theme: 'dark'});
+            }
+
+            if (!displayNameSnapshot.empty) {
+                return toast.error("Display name is already in use", {position: 'top-center', autoClose: 3000, theme: 'dark'});
+            }
+
             const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password);
             if(!newUser) return;
             const userData = {
@@ -48,7 +72,7 @@ createUserWithEmailAndPassword,
                 isAdmin: false,
                 language: "cpp",
             }
-            await setDoc(doc(firestore,"users", newUser.user.uid), userData)
+            await setDoc(doc(firestore,"users", userData.uid), userData)
             router.push("/");
         } catch(error:any){
             toast.error(error.message,{position:"top-center"})

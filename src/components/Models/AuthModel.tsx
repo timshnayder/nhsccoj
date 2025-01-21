@@ -14,7 +14,10 @@ type AuthModelProps = {
 const AuthModel:React.FC<AuthModelProps> = () => {
     const authModel = useRecoilValue(authModelState);
 	const closeModel = useCloseModel();
-    
+	const setAuthModelState = useSetRecoilState(authModelState);
+
+	// const type = "login";
+	// setAuthModelState((prev) => ({...prev, type}));
     return (
         <>
             <div className='fixed  w-full h-full flex items-center justify-center'>

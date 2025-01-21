@@ -29,9 +29,7 @@ const Navbar:React.FC<NavbarProps> = ({problemPage}) => {
     const router = useRouter();
     const [user] = useAuthState(auth);
     const admin = useGetUserAdmin();
-    const handleClick = () => {
-        router.push("/auth");
-    }
+    const displayName = useGetUserDisplayName();
     return (
         <nav className="relative w-full items-center px-5 bg-[#1f1f1f] text-white text-lg font-sans font-semibold drop-shadow-lg z-10">
             <div className={`flex w-full items-center justify-between`}>
@@ -77,19 +75,19 @@ const Navbar:React.FC<NavbarProps> = ({problemPage}) => {
                     {!user && (
                         <div className='inline-block items-center float-right align-middle'>
                             <Link href="/auth">
-                                <button className='mr-5 my-2 bg-dark-layer-1 text-white py-1 px-4 rounded-md text-sm font-medium
+                                <button className='mr-5 my-2 bg-dark-fill-2 text-white py-1 px-4 rounded-md text-sm font-medium
                                 hover:text-black hover:bg-white hover-border-2 hover:border-gray border-4 border-white transition duration-300 ease-in-out' >Sign In</button>
                             </Link>
                         </div>
                     )}
                     
                     {user && (
-                        <div className = "group relative justify-right py-2 flex">
+                        <Link href={`/user/${displayName}`} className = "group relative justify-right py-2 flex">
                         <CgProfile font-size={"36"} />
                         <div className="absolute top-10 left-2/4 -translate-x-2/4 mx-auto bg-black text-white p-2 rounded shadow-lg z-auto group-hover:scale-100 scale-0 transition-all duration-300 ease-in-out">
-                            <p className="text-sm z-10">{user.email}</p>
+                            <p className="text-sm z-10">{displayName}</p>
                         </div>
-                        </div>
+                        </Link>
                     )}
                     {user && <Logout/>}
                     
@@ -117,6 +115,26 @@ function useGetUserAdmin(){
 		}
 		if(user) getIfUserAdmin();
 		return () => setData(false);
+	},[user])
+	return data;
+}
+
+function useGetUserDisplayName(){
+	const [data,setData] = useState("404");
+	const [user] = useAuthState(auth);
+	useEffect(()=>{
+		const getIfUserAdmin = async() =>{
+			const userRef = doc(firestore,"users",user!.uid);
+			const userSnap = await getDoc(userRef);
+            console.log(userSnap);
+            if(userSnap.exists()){
+				const data = userSnap.data();
+				const {displayName} = data;
+				setData(displayName);
+			}
+		}
+		if(user) getIfUserAdmin();
+		return () => setData("404");
 	},[user])
 	return data;
 }

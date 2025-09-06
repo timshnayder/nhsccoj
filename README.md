@@ -1,7 +1,7 @@
-# Newmarket Highschool Coding Club Online Judge
+# Newmarket High School Coding Club Online Judge
 
 ## Overview
-The **Newmarket Highschool Coding Club Online Judge** (NHCCOJ) is a platform designed to foster programming skills within the Newmarket Highschool Coding Club. It allows members to:
+The **Newmarket High School Coding Club Online Judge** (NHSCCOJ) is a platform designed to foster programming skills within the Newmarket High School Coding Club. It allows members to:
 
 ## Features
 
